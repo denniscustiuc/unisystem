@@ -27,7 +27,7 @@ function ModulesForCohort(){
             <ul>
                 {modules.map((module) => (
                     <li key={module.code}>
-                        {module.code} - {module.full_name}
+                        {module.code} - {module.full_name} - <Link to={`/module/${module.code}`}> View Module</Link>
                     </li>
                 ))}
             </ul>

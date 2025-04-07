@@ -21,7 +21,7 @@ function SingleDegreePage(){
     }, []);
 
     if (!degree) {
-        return <p>Loading degree information...</p>;
+        return <p>Loading degree information...</p>
     }
     
 

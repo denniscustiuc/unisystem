@@ -23,6 +23,7 @@ function AllDegreePage(){
                     </li>
                 ))}
             </ul>
+            <Link to="/degree/create">Add Degree</Link>
         </div>
     )
 }

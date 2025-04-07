@@ -23,6 +23,7 @@ function AllCohortPage(){
                     </li>
                 ))}
             </ul>
+            <Link to="/cohort/create">Add Cohort</Link>
         </div>
     )
 }

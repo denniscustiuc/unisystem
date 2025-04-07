@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
+Link
 
 function AllModules() {
     
@@ -26,6 +26,7 @@ function AllModules() {
                 {modules.map((module) => (
                     <li key={module.code}>
                         {module.code} - {module.full_name}
+                        <Link to={`/module/${module.code}`}> View Module</Link>
                     </li>
                 ))}
             </ul>

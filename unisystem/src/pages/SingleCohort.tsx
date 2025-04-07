@@ -30,7 +30,7 @@ function SingleCohortPage(){
             <p>Name: {cohort.name}</p>
             <p>Year: {cohort.year}</p>
             <p>Code: {cohort.id}</p>
-            <Link to={`/module/${id}`}>View Modules</Link>
+            <Link to={`/cohort/${id}/modules`}>View Modules</Link>
             <h3>Students Enrolled:</h3>
             <ul>
                 {students.map((student) => (

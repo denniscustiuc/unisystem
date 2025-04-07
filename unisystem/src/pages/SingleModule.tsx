@@ -4,45 +4,32 @@ import { Link } from 'react-router-dom';
 
 function SingleModulePage(){
 
-    const { id } = useParams();
-    const [cohort, setCohort] = useState(null);
-    const [students, setStudents] = useState([]);
+    const { code } = useParams();
+    const [module, setModule] = useState(null);
 
-    useEffect(() => {        
-        fetch (`http://127.0.0.1:8000/api/cohort/${id}`)
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/module/${code}/`)
         .then((response) => response.json())
-        .then(data => setCohort(data))
-        .catch((error) => console.error('Error fetching data:', error));
-    
-        fetch(`http://127.0.0.1:8000/api/student/?cohort=${id}`)
-        .then((response) => response.json())
-        .then(data => setStudents(data))
-        .catch((error) => console.error('Error fetching data:', error));
-
-    }, []);
+        .then((data) => setModule(data))
+        .catch((error) => console.error('Error fetching degree:', error));
  
-    if(!cohort) {
-        return <p>Loading...</p>
+    }, []);
+    console.log(module);   
+ 
+    if(!module) {
+        return <p>Loading module information...</p>
     }
 
     return (
         <div>
-            <p>Name: {cohort.name}</p>
-            <p>Year: {cohort.year}</p>
-            <p>Code: {cohort.id}</p>
-            <Link to={`/module/${id}`}>View Modules</Link>
-            <h3>Students Enrolled:</h3>
-            <ul>
-                {students.map((student) => (
-                    <li key={student.student_id}>
-                        Name: {student.first_name} {student.last_name} <br/>
-                        Email: {student.email}
-                        <Link to={`/student/${student.student_id}`}> View Details</Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
+            <h1>{module.full_name}</h1>
+            <p>Module Code: {module.code}</p>
+            <p>CA Split: {module.ca_split}%</p>
+            <p>Delivered to: {module.delivered_to.length} cohort{(module.delivered_to.length) > 1 ? "s" : ""} </p>
+            <Link to={`/module/${module.code}/student`}>View Students</Link>
+        </div> 
     )
+
 }
 
 export default SingleModulePage;
